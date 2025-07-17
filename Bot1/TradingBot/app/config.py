@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-bot_token = "8110699202:AAF0UOwOGC2E64x4eiMs8kdf3RHHbV-IT80"
+bot_token = "7756515615:AAFn_fiDzSKmNiBH_KKrMyJ7IhiN8RrCbd0"
 api_key = "1d4d07d2-2f92-4cc8-9876-ed42588e953d"
 api_secret_key = "F77F357DE09F018D098FC84B4C3E4B3E"
 passphrase = "Shdbxh26!)"
