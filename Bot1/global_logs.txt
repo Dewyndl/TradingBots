@@ -1,0 +1,43 @@
+[2025-07-16 23:35:44,792]:INFO Logger created
+[2025-07-16 23:35:46,235]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:46,663]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:47,053]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:47,977]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:48,381]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:48,788]:INFO Start polling
+[2025-07-16 23:35:48,877]:INFO Run polling for bot @my_personale_trading_bot id=7756515615 - 'my_personal_trading_bot'
+[2025-07-16 23:35:49,335]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:49,714]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:50,654]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:51,034]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:51,973]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:52,365]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:53,026]:ERROR Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+[2025-07-16 23:35:53,027]:WARNING Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 7756515615)
+[2025-07-16 23:35:53,326]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:53,719]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:54,664]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:55,067]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:55,993]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:56,373]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:57,334]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:57,735]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:35:58,675]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:35:58,997]:ERROR Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+[2025-07-16 23:35:58,997]:WARNING Sleep for 1.186615 seconds and try again... (tryings = 1, bot id = 7756515615)
+[2025-07-16 23:35:59,313]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:00,252]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:00,702]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:01,635]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:02,123]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:03,035]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:03,430]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:04,343]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:04,790]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:05,705]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:05,917]:ERROR Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+[2025-07-16 23:36:05,917]:WARNING Sleep for 1.386898 seconds and try again... (tryings = 2, bot id = 7756515615)
+[2025-07-16 23:36:06,213]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:07,138]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
+[2025-07-16 23:36:07,558]:INFO HTTP Request: GET https://www.okx.com/api/v5/account/balance "HTTP/2 200 OK"
+[2025-07-16 23:36:08,366]:INFO HTTP Request: GET https://www.okx.com/api/v5/market/candles?instId=SOL-USDT-SWAP&bar=5m&limit=100 "HTTP/2 200 OK"
