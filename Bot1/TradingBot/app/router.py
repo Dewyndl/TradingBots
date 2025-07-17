@@ -3,11 +3,12 @@ from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-
+import re
 from TradingBot.app.config import user_list
 from TradingBot.app.keyboard import *
 from TradingBot.app.texts import *
 from TradingBot.app.settings import fetch_all_settings, set_setting
+
 
 router = Router(
     name="USER"
@@ -25,7 +26,7 @@ newdefault = ["percentage_last_green_candle_range", "is_last_candle_analise_acti
 redcandles = ["length_of_red_candles_sequence_to_open_long", "timer_before_red_candles_opening", "redcandles_stoploss_range", "grid_redcandles_range"]
 bearish = ["bearish_length", "bearish_stoploss_range", "grid_bearish_range", "timer_before_bearish_opening"]
 newbearish = ["newbearish_length", "timer_before_newbearish_opening", "grid_newbearish_range", "newbearish_stoploss_range"]
-global_ = ["positions_amount","positions_grid", "margin_bank", "max_total_stoploss", "bearish_sequence_timer_sleep", "length_of_bearish_sequence_to_sleep", "bearish_stepwise_drop_timer_sleep", "length_of_bearish_stepwise_drop", "currency_long", "timeframe", "margin_on_position_long", "leverage_long", "seconds_to_check"]
+global_ = ["delta_percentage","positions_amount","positions_grid", "margin_bank", "max_total_stoploss", "bearish_sequence_timer_sleep", "length_of_bearish_sequence_to_sleep", "bearish_stepwise_drop_timer_sleep", "length_of_bearish_stepwise_drop", "currency_long", "timeframe", "margin_on_position_long", "leverage_long", "seconds_to_check"]
 green = ["green_stoploss_range", "timer_before_green_opening", "grid_green_range"]
 solo = ["solo_stoploss_range", "timer_before_solo_opening", "grid_solo_range"]
 pair = ["pair_stoploss_range", "timer_before_pair_opening", "grid_pair_range"]
@@ -106,20 +107,40 @@ async def handle_start_input(message: Message):
         await message.answer("Главное меню", reply_markup=await get_main_settings_keyboard())
 
 
-import re
-
 @router.callback_query(F.data.startswith("set_is_trading"))
 async def set_setting_(call: types.CallbackQuery, state: FSMContext):
-    match = re.match(r"set_is_trading_(.+)_active_(\d+)", call.data)
-    if not match:
-        await call.answer("Некорректный формат данных.", show_alert=True)
-        return
+    trading_active_information = [
+        ["is_trading_default_active", settings.is_trading_default_active, "обычную"],
+        ["is_trading_redcandles_active", settings.is_trading_redcandles_active, "красную"],
+        ["is_trading_newdefault_active", settings.is_trading_newdefault_active, "обычную новую"],
+        ["is_trading_bearish_active", settings.is_trading_bearish_active, "медвежью"],
+        ["is_trading_newbearish_active", settings.is_trading_newbearish_active, "новую медвежью"],
+        ["is_trading_green_active", settings.is_trading_green_active, "новую зеленую"],
+        ["is_trading_solo_active", settings.is_trading_solo_active, "одиночную"],
+        ["is_trading_pair_active", settings.is_trading_pair_active, "парную"],
+        ["is_trading_six_active", settings.is_trading_six_active, "шестерную"],
+        ["is_trading_phoenix_active", settings.is_trading_phoenix_active, "феникса"],
+        ["is_trading_trio_active", settings.is_trading_trio_active, "тройную"],
+        ["is_trading_five_active", settings.is_trading_five_active, "пятерную"],
+        ["is_trading_main_active", settings.is_trading_five_active, "основную"]
+    ]
+    if call.data.startswith("set_is_trading_all_active_"):
+        print(call.data)
+        for trading in trading_active_information:
+            print(trading[0], int(call.data[-1]))
+            await set_setting(trading[0], int(call.data[-1]))
+            await call.message.edit_reply_markup(reply_markup=await get_main_settings_keyboard())
+    else:
+        match = re.match(r"set_is_trading_(.+)_active_(\d+)", call.data)
+        if not match:
+            await call.answer("Некорректный формат данных.", show_alert=True)
+            return
 
-    trading_type, trading_state = match.groups()
-    print(trading_type, trading_state)
+        trading_type, trading_state = match.groups()
+        print(trading_type, trading_state)
 
-    await set_setting(f'is_trading_{trading_type}_active', int(trading_state))
-    await call.message.edit_reply_markup(reply_markup=await get_main_settings_keyboard())
+        await set_setting(f'is_trading_{trading_type}_active', int(trading_state))
+        await call.message.edit_reply_markup(reply_markup=await get_main_settings_keyboard())
     await call.answer()
 
 

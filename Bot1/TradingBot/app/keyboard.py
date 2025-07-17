@@ -204,78 +204,58 @@ async def get_main_settings():
 
 
 async def get_main_settings_keyboard():
-    settings = await fetch_all_settings()
-    print(settings.is_trading_pair_active, settings.is_trading_six_active)
+    try:
+        settings = await fetch_all_settings()
+        print(settings.is_trading_pair_active, settings.is_trading_six_active)
 
-    text = "Выключить обычную" if settings.is_trading_default_active else "Включить обычную"
-    active = "0" if settings.is_trading_default_active else "1"
-
-    text2 = "Выключить красную" if settings.is_trading_redcandles_active else "Включить красную"
-    active2 = "0" if settings.is_trading_redcandles_active else "1"
-
-    text3 = "Выключить обычную новую" if settings.is_trading_newdefault_active else "Включить обычную новую"
-    active3 = "0" if settings.is_trading_newdefault_active else "1"
-
-    text4 = "Выключить медвежью" if settings.is_trading_bearish_active else "Включить медвежью"
-    active4 = "0" if settings.is_trading_bearish_active else "1"
-
-    text5 = "Выключить новую медвежью" if settings.is_trading_newbearish_active else "Включить новую медвежью"
-    active5 = "0" if settings.is_trading_newbearish_active else "1"
-
-    text6 = "Выключить зеленую" if settings.is_trading_green_active else "Включить зеленую"
-    active6 = "0" if settings.is_trading_green_active else "1"
-
-    text7 = "Выключить одиночную" if settings.is_trading_solo_active else "Включить одиночную"
-    active7 = "0" if settings.is_trading_solo_active else "1"
-
-    text8 = "Выключить парную" if settings.is_trading_pair_active else "Включить парную"
-    active8 = "0" if settings.is_trading_pair_active else "1"
-
-    text9 = "Выключить шестерную" if settings.is_trading_six_active else "Включить шестерную"
-    active9 = "0" if settings.is_trading_six_active else "1"
-
-    text10 = "Выключить феникса" if settings.is_trading_phoenix_active else "Включить феникса"
-    active10 = "0" if settings.is_trading_phoenix_active else "1"
-
-    text11 = "Выключить тройную" if settings.is_trading_trio_active else "Включить тройную"
-    active11 = "0" if settings.is_trading_trio_active else "1"
-
-    text12 = "Выключить пятерную" if settings.is_trading_five_active else "Включить пятерную"
-    active12 = "0" if settings.is_trading_five_active else "1"
-
-    text13 = "Выключить основную" if settings.is_trading_main_active else "Включить основную"
-    active13 = "0" if settings.is_trading_five_active else "1"
-
-    builder = InlineKeyboardBuilder()
-    builder.row(InlineKeyboardButton(text="⚪️" + text, callback_data=f"set_is_trading_default_active_{active}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text3, callback_data=f"set_is_trading_newdefault_active_{active3}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text2, callback_data=f"set_is_trading_redcandles_active_{active2}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text4, callback_data=f"set_is_trading_bearish_active_{active4}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text5, callback_data=f"set_is_trading_newbearish_active_{active5}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text6, callback_data=f"set_is_trading_green_active_{active6}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text7, callback_data=f"set_is_trading_solo_active_{active7}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text8, callback_data=f"set_is_trading_pair_active_{active8}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text9, callback_data=f"set_is_trading_six_active_{active9}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text10, callback_data=f"set_is_trading_phoenix_active_{active10}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text11, callback_data=f"set_is_trading_trio_active_{active11}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text12, callback_data=f"set_is_trading_five_active_{active12}"))
-    builder.row(InlineKeyboardButton(text="⚪️" + text13, callback_data=f"set_is_trading_main_active_{active13}"))
-    builder.row(InlineKeyboardButton(text="🟠Обычная", callback_data="default_settings"))
-    builder.row(InlineKeyboardButton(text="🟡Обычная новая", callback_data="newdefault_settings"))
-    builder.row(InlineKeyboardButton(text="🔴Красная", callback_data="redcandles_settings"))
-    builder.row(InlineKeyboardButton(text="🟤Медвежья", callback_data="bearish_settings"))
-    builder.row(InlineKeyboardButton(text="⚫️Медвежья новая", callback_data="newbearish_settings"))
-    builder.row(InlineKeyboardButton(text="🟢Зеленая", callback_data="green_settings"))
-    builder.row(InlineKeyboardButton(text="🔘Единичная", callback_data="solo_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Парная", callback_data="pair_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Шестерная", callback_data="six_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Феникс", callback_data="phoenix_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Тройная", callback_data="trio_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Пятерная", callback_data="five_settings"))
-    builder.row(InlineKeyboardButton(text="🔳Основная", callback_data="main_settings"))
-    builder.row(InlineKeyboardButton(text="🔵Общие настройки", callback_data="global_settings"))
-    builder.row(InlineKeyboardButton(text="🟣Состояние адаптивности", callback_data="adaptivity"))
-    return builder.as_markup()
+        builder = InlineKeyboardBuilder()
+        trading_active_information = [
+            ["is_trading_default_active", settings.is_trading_default_active, "обычную"],
+            ["is_trading_redcandles_active", settings.is_trading_redcandles_active, "красную"],
+            ["is_trading_newdefault_active", settings.is_trading_newdefault_active, "обычную новую"],
+            ["is_trading_bearish_active", settings.is_trading_bearish_active, "медвежью"],
+            ["is_trading_newbearish_active", settings.is_trading_newbearish_active, "новую медвежью"],
+            ["is_trading_green_active", settings.is_trading_green_active, "новую зеленую"],
+            ["is_trading_solo_active", settings.is_trading_solo_active, "одиночную"],
+            ["is_trading_pair_active", settings.is_trading_pair_active, "парную"],
+            ["is_trading_six_active", settings.is_trading_six_active, "шестерную"],
+            ["is_trading_phoenix_active", settings.is_trading_phoenix_active, "феникса"],
+            ["is_trading_trio_active", settings.is_trading_trio_active, "тройную"],
+            ["is_trading_five_active", settings.is_trading_five_active, "пятерную"],
+            ["is_trading_main_active", settings.is_trading_five_active, "основную"]
+        ]
+        count_of_enabled_trades = 0
+        for trading_active in trading_active_information:
+            if trading_active[1]:
+                count_of_enabled_trades += 1
+            else:
+                count_of_enabled_trades -= 1
+            text = "⚪️" + ("Выключить " if trading_active[1] else "Включить ") + trading_active[2]
+            callback_data = f"set_{trading_active[0]}_" + ("0" if trading_active[1] else '1')
+            print(trading_active, callback_data)
+            builder.row(InlineKeyboardButton(text=text, callback_data=callback_data))
+        if count_of_enabled_trades > 0:
+            builder.row(InlineKeyboardButton(text="Выключить все", callback_data="set_is_trading_all_active_0"))
+        else:
+            builder.row(InlineKeyboardButton(text="Включить все", callback_data="set_is_trading_all_active_1"))
+        builder.row(InlineKeyboardButton(text="🟠Обычная", callback_data="default_settings"))
+        builder.row(InlineKeyboardButton(text="🟡Обычная новая", callback_data="newdefault_settings"))
+        builder.row(InlineKeyboardButton(text="🔴Красная", callback_data="redcandles_settings"))
+        builder.row(InlineKeyboardButton(text="🟤Медвежья", callback_data="bearish_settings"))
+        builder.row(InlineKeyboardButton(text="⚫️Медвежья новая", callback_data="newbearish_settings"))
+        builder.row(InlineKeyboardButton(text="🟢Зеленая", callback_data="green_settings"))
+        builder.row(InlineKeyboardButton(text="🔘Единичная", callback_data="solo_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Парная", callback_data="pair_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Шестерная", callback_data="six_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Феникс", callback_data="phoenix_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Тройная", callback_data="trio_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Пятерная", callback_data="five_settings"))
+        builder.row(InlineKeyboardButton(text="🔳Основная", callback_data="main_settings"))
+        builder.row(InlineKeyboardButton(text="🔵Общие настройки", callback_data="global_settings"))
+        builder.row(InlineKeyboardButton(text="🟣Состояние адаптивности", callback_data="adaptivity"))
+        return builder.as_markup()
+    except Exception as e:
+        print(e)
 
 def get_long_settings_keyboard(is_trading_long_active, is_trading_red_candles_active, is_trading_sequence_active, is_trading_red_stepwise_active, is_last_candle_analise_active):
     text = "Выключить торговлю лонг" if is_trading_long_active else "Включить торговлю лонг"

@@ -288,6 +288,7 @@ class BackStrategy(Strategy):
     def events(self):
         return self._events
 
+
     def _confirm_events(self):
         self._history.extend(self._events)
         self.logger.log_events(self._events, use_seconds=False)
@@ -299,11 +300,11 @@ class BackStrategy(Strategy):
         return self._data[self._i][0]/1000
 
     @staticmethod
-    def delta_percentage(self, from_price, to_price):
+    def delta_percentage(from_price, to_price):
         return (to_price - from_price) / from_price * 100
 
     @staticmethod
-    def delta(self, from_price, to_price):
+    def delta(from_price, to_price):
         return to_price-from_price
 
 

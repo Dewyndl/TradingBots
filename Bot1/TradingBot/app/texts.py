@@ -2,11 +2,32 @@ from TradingBot.app.database import *
 from TradingBot.mathblock import *
 from TradingBot.app.settings import settings
 from TradingBot.app.database import get_positions_amount
+from TradingBot.app.settings import settings as stt
+
 def form_grid_text(grid):
     grid_in_text_long = ""
     for i in range(len(grid)):
         grid_in_text_long += f'Цель №{i + 1}|Процент прибыли: {grid[i][0]}|Процент закрытия: {grid[i][1]}\n'
     return grid_in_text_long
+
+
+async def get_global_settings_text():
+    settings = await fetch_all_settings()
+    positions_amount = await get_positions_amount()
+    text = "".join(
+        f"Кол-во ступенчатых падающих свечей для сна: {settings.length_of_bearish_stepwise_drop}\n"
+        f"Таймер сна после ступенчатого падения: {settings.bearish_stepwise_drop_timer_sleep}\n"
+        #f"Секунды проверки: {settings.seconds_to_check}"
+        f"Таймфрейм для проверки: {settings.timeframe}\n"
+        f"Валюта лонг: {settings.currency_long}\n"
+        f"Сумма банка: {stt.dynamic_bank}\n"
+        f"Сетка позиций: {settings.positions_grid}\n"
+        f"Кредитное плечо лонг: {settings.leverage_long}\n"
+        f"Процент изменения: {settings.delta_percentage}\n"
+        f"Общий стоп-лосс: {settings.max_total_stoploss}\n"
+        f"Количество открытых сделок: {positions_amount}\n"
+    )
+    return text
 
 
 async def get_default_settings_text():
@@ -42,23 +63,6 @@ async def get_redcandles_settings_text():
         f"Таймер перед открытием: {settings.timer_before_red_candles_opening}\n"
         f"Процент падения для закрытия лонга по красным свечам: {settings.redcandles_stoploss_range}\n"
         f"Сетка красной: {form_grid_text(settings.grid_redcandles_range)}\n"
-    )
-    return text
-from TradingBot.app.settings import settings as stt
-async def get_global_settings_text():
-    settings = await fetch_all_settings()
-    positions_amount = await get_positions_amount()
-    text = "".join(
-        f"Кол-во ступенчатых падающих свечей для сна: {settings.length_of_bearish_stepwise_drop}\n"
-        f"Таймер сна после ступенчатого падения: {settings.bearish_stepwise_drop_timer_sleep}\n"
-        #f"Секунды проверки: {settings.seconds_to_check}"
-        f"Таймфрейм для проверки: {settings.timeframe}\n"
-        f"Валюта лонг: {settings.currency_long}\n"
-        f"Сумма банка: {stt.dynamic_bank}\n"
-        f"Сетка позиций: {settings.positions_grid}\n"
-        f"Кредитное плечо лонг: {settings.leverage_long}\n"
-        f"Общий стоп-лосс: {settings.max_total_stoploss}\n"
-        f"Количество открытых сделок: {positions_amount}\n"
     )
     return text
 

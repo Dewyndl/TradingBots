@@ -1,0 +1,15 @@
+trading_active_information = [
+            ["is_trading_default_active", settings.is_trading_default_active, "обычную"],
+            ["is_trading_redcandles_active", settings.is_trading_redcandles_active, "красную"],
+            ["is_trading_redcandles_active", settings.is_trading_newdefault_active, "обычную новую"],
+            ["is_trading_redcandles_active", settings.is_trading_bearish_active, "медвежью"],
+            ["is_trading_redcandles_active", settings.is_trading_newbearish_active, "новую медвежью"],
+            ["is_trading_redcandles_active", settings.is_trading_green_active, "новую зеленую"],
+            ["is_trading_redcandles_active", settings.is_trading_solo_active, "одиночную"],
+            ["is_trading_redcandles_active", settings.is_trading_pair_active, "парную"],
+            ["is_trading_redcandles_active", settings.is_trading_six_active, "шестерную"],
+            ["is_trading_redcandles_active", settings.is_trading_phoenix_active, "феникса"],
+            ["is_trading_redcandles_active", settings.is_trading_trio_active, "тройную"],
+            ["is_trading_redcandles_active", settings.is_trading_five_active, "пятерную"],
+            ["is_trading_main_active", settings.is_trading_five_active, "основную"],
+        ]
