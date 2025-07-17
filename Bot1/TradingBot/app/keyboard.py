@@ -197,7 +197,7 @@ async def get_main_settings():
         InlineKeyboardButton(text="Таймер перед открытием", callback_data="set_timer_before_main_opening"))
     builder.row(InlineKeyboardButton(text="Сетка основной", callback_data=f"set_grid_main_range"))
     builder.row(InlineKeyboardButton(text="Размер тригерной свечи", callback_data=f"set_main_trigger_candle_size"))
-    builder.row(InlineKeyboardButton(text="Таймер находки", callback_data="set_timer_of_find_main"))
+    builder.row(InlineKeyboardButton(text="Интервал находки", callback_data="set_timer_of_find_main"))
     builder.row(InlineKeyboardButton(text="Таймер между сделками", callback_data="set_main_timer_between_trades"))
     builder.row(InlineKeyboardButton(text="Назад", callback_data="back_to_main_keyboard_menu"))
     return builder.as_markup()
