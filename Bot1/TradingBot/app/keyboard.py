@@ -59,8 +59,8 @@ async def get_global_settings():
     builder.row(InlineKeyboardButton(text="Сетка позиций", callback_data=f"set_positions_grid"))
     builder.row(InlineKeyboardButton(text="Кредитное плечо лонг", callback_data=f"set_leverage_long"))
     builder.row(InlineKeyboardButton(text="Общий стоп-лосс", callback_data=f"set_max_total_stoploss"))
-    builder.row(InlineKeyboardButton(text="Кол-во сделок", callback_data=f"set_positions_amount"))
     builder.row(InlineKeyboardButton(text="Процент изменения", callback_data=f"set_delta_percentage"))
+    builder.row(InlineKeyboardButton(text="Обнулить количество сделок", callback_data=f"zero_position_amount"))
     builder.row(InlineKeyboardButton(text="Назад", callback_data="back_to_main_keyboard_menu"))
 
     return builder.as_markup()

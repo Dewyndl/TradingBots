@@ -198,6 +198,13 @@ async def drop_tables():
         await db.execute("DROP TABLE IF EXISTS settings")
         await db.commit()
 
+async def drop_position_table():
+    async with aiosqlite.connect(private_database) as db:
+        await db.execute("DROP TABLE IF EXISTS positions")
+        await db.commit()
+
+    await create_tables()
+
 # Функция для создания таблиц
 async def create_tables():
     """
@@ -572,11 +579,14 @@ async def fetch_all_settings():
 
 
 async def get_positions_amount():
-    async with aiosqlite.connect(private_database) as db:
-        async with db.execute('SELECT COUNT(*) FROM positions') as cursor:
-            row = await cursor.fetchone()
-            row_count = row[0]
-            return row_count
+    try:
+        async with aiosqlite.connect(private_database) as db:
+            async with db.execute('SELECT COUNT(*) FROM positions') as cursor:
+                row = await cursor.fetchone()
+                row_count = row[0]
+                return row_count
+    except Exception as e:
+        print(e)
 
 
 async def add_position(id: int, time_opened: int, trade_type: str, close_price: float):

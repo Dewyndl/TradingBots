@@ -8,7 +8,7 @@ from TradingBot.app.config import user_list
 from TradingBot.app.keyboard import *
 from TradingBot.app.texts import *
 from TradingBot.app.settings import fetch_all_settings, set_setting
-
+from TradingBot.app.database import drop_position_table
 
 router = Router(
     name="USER"
@@ -105,6 +105,13 @@ async def adaptivity_menu(call: types.CallbackQuery, state: FSMContext):
 async def handle_start_input(message: Message):
     if message.chat.id in user_list:
         await message.answer("Главное меню", reply_markup=await get_main_settings_keyboard())
+
+
+@router.callback_query(F.data.startswith("zero_position_amount"))
+async def zero_position_amount(call: types.CallbackQuery, state: FSMContext):
+    await drop_position_table()
+    await call.message.edit_text(await get_global_settings_text(), reply_markup=await get_main_settings())
+    await call.answer()
 
 
 @router.callback_query(F.data.startswith("set_is_trading"))
