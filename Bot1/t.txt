@@ -1,0 +1,4 @@
+git switch main
+git pull origin main
+git switch develop
+git merge -f main™™
