@@ -37,14 +37,14 @@ async def default_trading(strategy: BackStrategy, i, was_candle_closed=False, is
     p3 = strategy.data.candle(i-3)
     if was_candle_closed:
         if strategy.timer_sleep + settings.open_long_interval <= strategy.timestamp:
-            sequence_start_candle_index = int(-settings.open_long_interval / float(settings.timeframe) - 1)  # Индекс первой зеленой свечи
-            for i in range(sequence_start_candle_index, -1):
-                if strategy.delta_from(i) < 0.02:
+            sequence_start_candle_index = int(-settings.open_long_interval / float(settings.timeframe))  # Индекс первой зеленой свечи
+            for j in range(sequence_start_candle_index, 0):
+                if strategy.delta_from(i-j) < 0.02:
                     break
             else:
                 strategy.logger.log("Найдена потенциальная бычья последовательность")
-                for i in range(sequence_start_candle_index, -1):
-                    if strategy.delta_percentage_from(i) < 0.15:
+                for j in range(sequence_start_candle_index, 0):
+                    if strategy.delta_percentage_from(i-j) < 0.15:
                         strategy.logger.log("Сделка не была открыта так как не все свечи от 0.15%")
                         break
                 else:

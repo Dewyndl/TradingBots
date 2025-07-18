@@ -196,7 +196,7 @@ class OnlineStrategy(Strategy):
         return self._trading_object.timeframe
 
     @staticmethod
-    def delta_percentage(self, from_price, to_price):
+    def delta_percentage(from_price, to_price):
         return (to_price-from_price)/from_price*100
 
     @staticmethod

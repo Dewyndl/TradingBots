@@ -19,7 +19,13 @@ async def open_temporary_long(strategy: OnlineStrategy):
     print(trade_id, strategy.timestamp, "long", close_price)
     strategy.stoploss("sell", "long", 20, settings.trio_stoploss, trade=trade)
 
+
 async def temporary_trading(strategy: OnlineStrategy, i, was_candle_closed=False, is_sleep_active=False, values=None):
+    p1 = strategy.data.candle(i-1)
+    p2 = strategy.data.candle(i-2)
+    p3 = strategy.data.candle(i-3)
+    p4 = strategy.data.candle(i-4)
+
     for event in strategy.events:
         print("EEEEE" + str(event))
         if isinstance(event, TradeOpened):
